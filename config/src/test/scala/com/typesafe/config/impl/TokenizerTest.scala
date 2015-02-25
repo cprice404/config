@@ -69,6 +69,12 @@ class TokenizerTest extends TestUtils {
     }
 
     @Test
+    def wassupYo() {
+      val result = tokenizeAsList("{foo: bar}")
+      println(result)
+    }
+
+    @Test
     def tokenizeTrueAndUnquotedText() {
         val expected = List(Tokens.START, tokenTrue, tokenUnquoted("foo"), Tokens.END)
         assertEquals(expected, tokenizeAsList("""truefoo"""))

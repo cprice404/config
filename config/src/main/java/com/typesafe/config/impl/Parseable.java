@@ -3,17 +3,7 @@
  */
 package com.typesafe.config.impl;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FilterReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.io.StringReader;
-import java.io.UnsupportedEncodingException;
+import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -75,7 +65,7 @@ public abstract class Parseable implements ConfigParseable {
         return modified;
     }
 
-    protected void postConstruct(ConfigParseOptions baseOptions) {
+    protected void ipostConstruct(ConfigParseOptions baseOptions) {
         this.initialOptions = fixupOptions(baseOptions);
 
         this.includeContext = new SimpleIncludeContext(this);
@@ -190,7 +180,27 @@ public abstract class Parseable implements ConfigParseable {
     // options.getAllowMissing()
     protected AbstractConfigValue rawParseValue(ConfigOrigin origin, ConfigParseOptions finalOptions)
             throws IOException {
+
         Reader reader = reader();
+        /*
+//        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+//        while (byte b = reader.read()) {
+//            bytes.write(b);
+//        }
+//        ByteArrayInputStream stream = new ByteArrayInputStream(bytes);
+//
+//        Reader resettableReader = new InputStreamReader(stream);
+//        ConfigOrigin originWithStream = origin.withStream(stream);
+*/
+
+        
+//        StringBuilder sb = new StringBuilder();
+//        while (char c = reader.read()) {
+//            sb.append(c);
+//        }
+//        String source = sb.toString();
+//        ConfigOrigin originWithSource = origin.withSource(source);
+//        reader = new StringReader(source);
 
         // after reader() we will have loaded the Content-Type.
         ConfigSyntax contentType = contentType();
